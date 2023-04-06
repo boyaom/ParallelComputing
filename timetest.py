@@ -1,5 +1,6 @@
 import os
 import time
+from pathlib import Path
 
 
 def test(cmd, times, N):
@@ -29,6 +30,6 @@ if __name__ == "__main__":
     s = ''
     # for mode in ['cpu', 'cuda', 'openmp']:
     for mode in ['cpu', 'cuda']:
-        meantime = test(locals()[f'{mode}cmd'], times, N)
+        meantime = test(Path(locals()[f'{mode}cmd']).resolve(), times, N)
         s +=f"{mode} time: {meantime}\n"
     print(s[:-1])
